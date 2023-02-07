@@ -1,65 +1,66 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 class Counter {
 public:
-    Counter(int v = 1) : counter(v) {}
-    //Counter(int v) : counter(v) {}
+    Counter(int num = 1) : num(num) {}
 
-    void add(int v) { counter++; }
+    void add(int v) { num++; }
 
-    void sub(int v) { counter--; }
+    void sub(int v) { num--; }
 
-    int get(int v) { return counter; }
+    int get(int v) { return num; }
 
 private:
-    int counter;
+    int num;
 };
 
 int main() {
     setlocale(LC_ALL, "Russian");
+    int num;
     std::cout
         << "Вы хотите указать начальное значение счётчика? Введите y или n: ";
     std::string begin;
     std::cin >> begin;
 
     if (begin == "n") {
-        std::cout << "До свидания." << std::endl;
-        return 0;
+        std::cout << "Значение счётчика 1" << std::endl;
+        num = 1;
+
     }
     else if (begin == "y") {
-
-        int n;
         cout << "Введите начальное значение счетчика: ";
-        cin >> n;
-        Counter counter(n);
-        while (true) {
-            char opt;
-            cout << "Введите команду ('+', '-', '=' или 'x'): ";
-            cin >> opt;
+        cin >> num;
+    }
+    Counter counter(num);
+    while (true) {
+        char opt;
+        cout << "Введите команду ('+', '-', '=' или 'x'): ";
+        cin >> opt;
 
-            switch (opt) {
-            case '+':
-                counter.add(n);
-                break;
+        switch (opt) {
+        case '+':
+            counter.add(num);
+            break;
 
-            case '-':
-                counter.sub(n);
-                break;
+        case '-':
+            counter.sub(num);
+            break;
 
-            case '=':
-                std::cout << counter.get(n) << std::endl;
-                break;
+        case '=':
+            std::cout << counter.get(num) << std::endl;
+            break;
 
-            case 'x':
-                std::cout << "До свидания." << std::endl;
-                return 0;
+        case 'x':
+            std::cout << "До свидания." << std::endl;
+            return 0;
 
-            default:
-                cout << "Неправильный символ!\n";
-            }
+        default:
+            cout << "Неправильный символ!\n";
         }
     }
+
     return 0;
 }
